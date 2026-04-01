@@ -102,11 +102,11 @@ const CONFIG = {
       classes: ['warrior','archer'],
       desc: '무작위 위치에 화살비',
       levels: [
-        { arrows:5,  damage:15,  cooldown:4000, radius:80  },
-        { arrows:8,  damage:35, cooldown:3500, radius:90  },
-        { arrows:11, damage:68, cooldown:3000, radius:100 },
-        { arrows:14, damage:96, cooldown:2500, radius:110 },
-        { arrows:17, damage:120, cooldown:1800, radius:120 }
+        { arrows:10,  damage:25,  cooldown:4000, radius:80  },
+        { arrows:15,  damage:45, cooldown:3500, radius:90  },
+        { arrows:20, damage:68, cooldown:3000, radius:100 },
+        { arrows:27, damage:75, cooldown:2500, radius:110 },
+        { arrows:37, damage:100, cooldown:1800, radius:120 }
       ]
     },
     guardBreak: {
@@ -161,7 +161,7 @@ const CONFIG = {
 
   // ── 웨이브 (9분 기준으로 조정) ──────────────────────
   WAVES: [
-    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:600, max:59  },
+    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:850, max:40  },
     { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:520, max:65  },
     { fromTime:90,  types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:460,  max:80  },
     { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:360,  max:95  },
