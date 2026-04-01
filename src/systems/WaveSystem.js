@@ -108,18 +108,14 @@ class WaveSystem {
 
   // 갈수록 몬스터 체력, 공격력 증가 (1분 단위 계단식 + 디버깅 로그)
   _getStatScale(elapsed) {
-    const minute = Math.min(Math.floor(elapsed / 60), 9);   // 0~9분까지만
+    const minute = Math.min(Math.floor(elapsed / 60), 9);
 
-    const hpScale     = 1 + minute * (1.8 / 9);   // 9분에 정확히 2.8배
-    const damageScale = 1 + minute * (0.8 / 9);   // 9분에 정확히 1.8배
+    const hpScale     = 1 + minute * (1.8 / 9);   // 9분 = 정확히 2.8배
+    const damageScale = 1 + minute * (0.8 / 9);   // 9분 = 정확히 1.8배
 
-    // 디버깅 로그 (개발자 도구 콘솔에서 확인 가능)
-    console.log(`[StatScale] elapsed=${elapsed.toFixed(0)}초 | minute=${minute} | HP배율=${hpScale.toFixed(2)}배 | 공격력배율=${damageScale.toFixed(2)}배`);
+    console.log(`[HP_DEBUG] ${elapsed.toFixed(0)}초 | ${minute}분 | HP×${hpScale.toFixed(2)} | DMG×${damageScale.toFixed(2)}`);
 
-    return {
-      hp: hpScale,
-      damage: damageScale
-    };
+    return { hp: hpScale, damage: damageScale };
   }
 
   // 너무 멀리 떨어진 몬스터 제거 (메모리 관리)

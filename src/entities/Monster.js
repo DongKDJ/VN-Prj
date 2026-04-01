@@ -1,8 +1,8 @@
 // =====================================================
-// Monster - 일반 몬스터
+// Monster - 일반 몬스터 (HP·공격력 스케일링 적용 완료)
 // =====================================================
 class Monster extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y, monsterType) {
+  constructor(scene, x, y, monsterType, options = {}) {   // ← options 추가!
     super(scene, x, y, monsterType);
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -10,10 +10,11 @@ class Monster extends Phaser.Physics.Arcade.Sprite {
     this.monsterType = monsterType;
     const cfg        = CONFIG.MONSTERS[monsterType];
 
-    this.maxHp   = cfg.maxHp;
-    this.hp      = cfg.maxHp;
+    // ←←← 여기서 options가 있으면 스케일링 적용 ←←←
+    this.maxHp   = options.maxHp   !== undefined ? options.maxHp   : cfg.maxHp;
+    this.hp      = this.maxHp;                                 // 현재 체력도 동일하게
+    this.dmg     = options.damage !== undefined ? options.damage : cfg.damage;
     this.spd     = cfg.speed;
-    this.dmg     = cfg.damage;
     this.xpValue = cfg.xp;
 
     // 데미지 쿨다운 (스킬별)
@@ -75,7 +76,6 @@ class Monster extends Phaser.Physics.Arcade.Sprite {
   }
 
   die() {
-    // XP 오브 드랍은 GameScene에서 처리
     this.scene.events.emit('monsterDied', this);
     this.hpBarBg.destroy();
     this.hpBar.destroy();
