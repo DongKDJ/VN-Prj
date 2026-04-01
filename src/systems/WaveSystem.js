@@ -108,11 +108,14 @@ class WaveSystem {
 
   // 갈수록 몬스터 체력, 공격력 증가
   _getStatScale(elapsed) {
-  return {
-    hp: 1 + elapsed * 0.002,       // 체력 증가
-    damage: 1 + elapsed * 0.0015   // 공격력 증가
-  };
-}
+    const baseTime = 540;                    // 9분(540초)을 기준 시간으로 설정
+    const timeFactor = elapsed / baseTime;   // 0초 = 0.0, 9분 = 1.0, 18분 = 2.0 ...
+
+    return {
+      hp:     1 + timeFactor * 4.5,          // 9분에 약 5.5배, 18분에 약 10배
+      damage: 1 + timeFactor * 3.0           // 9분에 약 4배, 18분에 약 7배
+    };
+  }
 
   // 너무 멀리 떨어진 몬스터 제거 (메모리 관리)
   cullDistant(px, py) {
