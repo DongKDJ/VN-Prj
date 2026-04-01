@@ -35,9 +35,9 @@ const CONFIG = {
 
   // ── 몬스터 ──────────────────────────────────────
   MONSTERS: {
-    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:83,  damage:5,  xp:2,  color:0x33cc33, size:24 },
-    slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:10, xp:12, color:0x3344cc, size:32 },
-    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:140, damage:8,  xp:5,  color:0xcc3333, size:18 }
+    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:83,  damage:7,  xp:2,  color:0x33cc33, size:24 },
+    slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:15, xp:12, color:0x3344cc, size:32 },
+    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:140, damage:10,  xp:5,  color:0xcc3333, size:18 }
   },
 
   // ── 보스 3마리 (3분/6분/9분) ──────────────────────
