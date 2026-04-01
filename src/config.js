@@ -31,7 +31,7 @@ const CONFIG = {
   },
 
   // ── 경험치 테이블 (레벨당 필요 XP) ──────────────────
-  XP_TABLE: [0,10,25,45,70,100,135,175,220,270,325,390,460,535,615,700,790,885,985,1090,1200],
+  XP_TABLE: [0,10,25,45,80,100,140,185,240,300,350,400,460,550,640,720,810,900,990,1100,1240],
 
   // ── 몬스터 ──────────────────────────────────────
   MONSTERS: {
@@ -161,13 +161,13 @@ const CONFIG = {
 
   // ── 웨이브 (9분 기준으로 조정) ──────────────────────
   WAVES: [
-    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:1200, max:30  },
-    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:1000, max:45  },
-    { fromTime:90,  types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:900,  max:60  },
-    { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:800,  max:80  },
-    { fromTime:190, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:700,  max:100 },
-    { fromTime:280, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:600,  max:120 },
-    { fromTime:370, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:500,  max:150 },
-    { fromTime:460, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:420,  max:180 }
+    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:600, max:59  },
+    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:520, max:65  },
+    { fromTime:90,  types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:460,  max:80  },
+    { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:360,  max:95  },
+    { fromTime:190, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:320,  max:115 },
+    { fromTime:280, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:280,  max:135 },
+    { fromTime:370, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:240,  max:160 },
+    { fromTime:460, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:180,  max:220 }
   ]
 };
