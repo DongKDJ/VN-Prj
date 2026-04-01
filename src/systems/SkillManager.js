@@ -262,25 +262,27 @@ class SkillManager {
     const warn = this.scene.add.circle(cx, cy, cfg.radius, 0xff4444, 0.25).setDepth(6);
     this.scene.time.delayedCall(500, () => {
       warn.destroy();
+      // 딜레이 후 타겟의 현재 위치 사용 (이동했으면 새 위치 추적)
+      const fx = target.active ? target.x : cx;
+      const fy = target.active ? target.y : cy;
+
+      // 반경 내 모든 적에게 데미지 (위치 기반 AoE)
+      [...this.scene.monsters.getChildren(), ...this.scene.bossGroup.getChildren()].forEach(m => {
+        if (!m.active) return;
+        if (Phaser.Math.Distance.Between(fx, fy, m.x, m.y) <= cfg.radius) {
+          m.takeDamage(cfg.damage, null);
+        }
+      });
+
+      // 화살 시각 효과 (데미지와 분리)
       for (let i = 0; i < cfg.arrows; i++) {
-        const ax = cx + Phaser.Math.Between(-cfg.radius, cfg.radius);
-        const ay = cy + Phaser.Math.Between(-cfg.radius, cfg.radius);
-
-        // 맞는 적 데미지
-        [...this.scene.monsters.getChildren(), ...this.scene.bossGroup.getChildren()].forEach(m => {
-          if (!m.active) return;
-          if (Phaser.Math.Distance.Between(ax, ay, m.x, m.y) < 20) {
-            m.takeDamage(cfg.damage, null);
-          }
-        });
-
-        // 화살 시각 효과
+        const ax = fx + Phaser.Math.Between(-cfg.radius, cfg.radius);
+        const ay = fy + Phaser.Math.Between(-cfg.radius, cfg.radius);
         const arrow = this.scene.add.image(ax, ay - 60, 'arrow').setDepth(13).setRotation(Math.PI / 2);
         this.scene.tweens.add({
           targets: arrow, y: ay, duration: 200,
           onComplete: () => {
             arrow.destroy();
-            // 땅 표시
             const mark = this.scene.add.image(ax, ay, 'arrow').setDepth(4).setAlpha(0.4).setRotation(Math.PI / 2);
             this.scene.time.delayedCall(600, () => mark.destroy());
           }
