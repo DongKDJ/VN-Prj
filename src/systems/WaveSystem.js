@@ -106,14 +106,19 @@ class WaveSystem {
     return { x, y };
   }
 
-  // 갈수록 몬스터 체력, 공격력 증가 (9분 기준 HP 2.8배, 공격력 1.8배)
+  // 갈수록 몬스터 체력, 공격력 증가 (1분 단위 계단식 + 디버깅 로그)
   _getStatScale(elapsed) {
-    const targetTime = 540;                    // 9분 = 540초
-    const ratio      = Math.min(elapsed / targetTime, 1);   // 540초 이후에는 1.0으로 고정
+    const minute = Math.min(Math.floor(elapsed / 60), 9);   // 0~9분까지만
+
+    const hpScale     = 1 + minute * (1.8 / 9);   // 9분에 정확히 2.8배
+    const damageScale = 1 + minute * (0.8 / 9);   // 9분에 정확히 1.8배
+
+    // 디버깅 로그 (개발자 도구 콘솔에서 확인 가능)
+    console.log(`[StatScale] elapsed=${elapsed.toFixed(0)}초 | minute=${minute} | HP배율=${hpScale.toFixed(2)}배 | 공격력배율=${damageScale.toFixed(2)}배`);
 
     return {
-      hp:     1 + ratio * 1.8,      // 0초 → 1배, 540초 → 정확히 2.8배
-      damage: 1 + ratio * 0.8       // 0초 → 1배, 540초 → 정확히 1.8배
+      hp: hpScale,
+      damage: damageScale
     };
   }
 

@@ -37,12 +37,12 @@ const CONFIG = {
   MONSTERS: {
     slime_normal: { name:'일반 슬라임', maxHp:30,  speed:83,  damage:7,  xp:2,  color:0x33cc33, size:24 },
     slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:15, xp:12, color:0x3344cc, size:32 },
-    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:140, damage:10,  xp:5,  color:0xcc3333, size:18 }
+    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:132, damage:10,  xp:5,  color:0xcc3333, size:18 }
   },
 
   // ── 보스 3마리 (3분/6분/9분) ──────────────────────
   BOSSES: [
-    { id:'angry_slime', name:'분노의 슬라임', time:180, maxHp:700,  speed:105, damage:23, xp:200, color:0xff2222, size:60, bulletDmg:8  },
+    { id:'angry_slime', name:'분노의 슬라임', time:180, maxHp:700,  speed:95, damage:23, xp:200, color:0xff2222, size:60, bulletDmg:8  },
     { id:'sad_slime',   name:'우울의 슬라임', time:360, maxHp:1100, speed:60,  damage:19, xp:300, color:0x2266ff, size:72, bulletDmg:10 },
     { id:'fear_slime',  name:'공포의 슬라임', time:540, maxHp:900,  speed:120, damage:35, xp:400, color:0x444444, size:60, bulletDmg:14 }
   ],
@@ -161,8 +161,8 @@ const CONFIG = {
 
   // ── 웨이브 (9분 기준으로 조정) ──────────────────────
   WAVES: [
-    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:900, max:33  },
-    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:520, max:55  },
+    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:950, max:29  },
+    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:520, max:51  },
     { fromTime:90,  types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:460,  max:80  },
     { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:360,  max:100  },
     { fromTime:190, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:320,  max:120 },
