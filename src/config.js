@@ -1,0 +1,174 @@
+// =====================================================
+// 슬라임 슬레이어 - 전체 게임 설정 및 데이터
+// =====================================================
+
+const CONFIG = {
+  WIDTH: 960,
+  HEIGHT: 540,
+  GAME_DURATION: 900,      // 15분 (초)
+  BOSS_TIMES: [300, 600, 900], // 5분, 10분, 15분
+
+  // ── 플레이어 ──────────────────────────────────────
+  PLAYER: {
+    warrior: {
+      name: '전사',
+      maxHp: 150,
+      speed: 160,
+      defense: 5,
+      startSkill: 'spinBlade',
+      bodyColor: 0x2255cc,
+      armorColor: 0x8899bb
+    },
+    archer: {
+      name: '궁수',
+      maxHp: 100,
+      speed: 200,
+      defense: 2,
+      startSkill: 'forkedArrow',
+      bodyColor: 0x226622,
+      armorColor: 0x884422
+    }
+  },
+
+  // ── 경험치 테이블 (레벨당 필요 XP) ──────────────────
+  XP_TABLE: [0,10,25,45,70,100,135,175,220,270,325,390,460,535,615,700,790,885,985,1090,1200],
+
+  // ── 몬스터 ──────────────────────────────────────
+  MONSTERS: {
+    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:80,  damage:5,  xp:5,  color:0x33cc33, size:24 },
+    slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:10, xp:15, color:0x3344cc, size:32 },
+    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:155, damage:8,  xp:8,  color:0xcc3333, size:18 }
+  },
+
+  // ── 보스 (시간 순) ────────────────────────────────
+  BOSSES: [
+    { id:'angry_slime',    name:'분노의 슬라임', time:300, maxHp:800,  speed:105, damage:20, xp:200, color:0xff2222, size:60 },
+    { id:'sad_slime',      name:'우울의 슬라임', time:600, maxHp:1200, speed:60,  damage:15, xp:300, color:0x2266ff, size:72 },
+    { id:'fear_slime',     name:'공포의 슬라임', time:900, maxHp:1000, speed:120, damage:25, xp:400, color:0x222222, size:60 },
+    { id:'adhesion_slime', name:'집착의 슬라임', time:900, maxHp:700,  speed:90,  damage:18, xp:300, color:0xaa22cc, size:52 }
+  ],
+
+  // ── 스킬 ──────────────────────────────────────────
+  SKILLS: {
+    spinBlade: {
+      name: '회전 칼날', type: 'rotating',
+      classes: ['warrior','archer'],
+      desc: '주위를 회전하는 칼날',
+      levels: [
+        { blades:1, damage:15, rotSpeed:2.5, radius:65,  hitRate:800  },
+        { blades:2, damage:18, rotSpeed:3.0, radius:70,  hitRate:750  },
+        { blades:3, damage:21, rotSpeed:3.5, radius:75,  hitRate:700  },
+        { blades:4, damage:24, rotSpeed:4.0, radius:80,  hitRate:650  },
+        { blades:5, damage:27, rotSpeed:4.5, radius:85,  hitRate:600  }
+      ]
+    },
+    holyBarrier: {
+      name: '신성 배리어', type: 'shield',
+      classes: ['warrior','archer'],
+      desc: '피해를 흡수하는 보호막',
+      levels: [
+        { shieldHp:15,  regenTime:15000 },
+        { shieldHp:25,  regenTime:13000 },
+        { shieldHp:35,  regenTime:11000 },
+        { shieldHp:50,  regenTime:9000  },
+        { shieldHp:70,  regenTime:7000  }
+      ]
+    },
+    shockWave: {
+      name: '충격파', type: 'pulse',
+      classes: ['warrior','archer'],
+      desc: '주위에 충격파를 방출',
+      levels: [
+        { damage:20, range:110, cooldown:3000 },
+        { damage:30, range:130, cooldown:2700 },
+        { damage:40, range:150, cooldown:2400 },
+        { damage:50, range:170, cooldown:2100 },
+        { damage:60, range:190, cooldown:1800 }
+      ]
+    },
+    thunder: {
+      name: '낙뢰', type: 'random_strike',
+      classes: ['warrior','archer'],
+      desc: '적에게 번개를 내리침',
+      levels: [
+        { damage:45,  targets:1, cooldown:4000 },
+        { damage:65,  targets:1, cooldown:3500 },
+        { damage:85,  targets:2, cooldown:3000 },
+        { damage:105, targets:2, cooldown:2500 },
+        { damage:130, targets:3, cooldown:2000 }
+      ]
+    },
+    arrowRain: {
+      name: '화살비', type: 'random_area',
+      classes: ['warrior','archer'],
+      desc: '무작위 위치에 화살비',
+      levels: [
+        { arrows:5,  damage:8,  cooldown:4000, radius:80  },
+        { arrows:8,  damage:10, cooldown:3500, radius:90  },
+        { arrows:11, damage:12, cooldown:3000, radius:100 },
+        { arrows:14, damage:14, cooldown:2500, radius:110 },
+        { arrows:17, damage:16, cooldown:2000, radius:120 }
+      ]
+    },
+    guardBreak: {
+      name: '충돌', type: 'collision',
+      classes: ['warrior'],
+      desc: '이동 시 적에게 충격 부여',
+      levels: [
+        { damage:10, knockback:120 },
+        { damage:15, knockback:150 },
+        { damage:20, knockback:180 },
+        { damage:25, knockback:210 },
+        { damage:30, knockback:240 }
+      ]
+    },
+    warriorSpirit: {
+      name: '전사의 외침', type: 'pulse',
+      classes: ['warrior'],
+      desc: '강력한 외침으로 주위 적 피해',
+      levels: [
+        { damage:35, range:90,  cooldown:5000 },
+        { damage:50, range:110, cooldown:4500 },
+        { damage:65, range:130, cooldown:4000 },
+        { damage:80, range:150, cooldown:3500 },
+        { damage:95, range:170, cooldown:3000 }
+      ]
+    },
+    forkedArrow: {
+      name: '갈래 화살', type: 'projectile',
+      classes: ['archer'],
+      desc: '적을 향해 화살을 발사',
+      levels: [
+        { arrows:1, damage:22, cooldown:1000, speed:420, spread:0    },
+        { arrows:2, damage:24, cooldown:900,  speed:440, spread:0.2  },
+        { arrows:3, damage:26, cooldown:800,  speed:460, spread:0.2  },
+        { arrows:4, damage:28, cooldown:700,  speed:480, spread:0.18 },
+        { arrows:5, damage:30, cooldown:600,  speed:500, spread:0.18 }
+      ]
+    },
+    windPulse: {
+      name: '바람 방벽', type: 'pulse',
+      classes: ['archer'],
+      desc: '바람으로 주위 적을 밀쳐냄',
+      levels: [
+        { damage:15, range:100, cooldown:4000, knockback:180 },
+        { damage:22, range:120, cooldown:3500, knockback:210 },
+        { damage:30, range:140, cooldown:3000, knockback:240 },
+        { damage:38, range:160, cooldown:2500, knockback:270 },
+        { damage:45, range:180, cooldown:2000, knockback:300 }
+      ]
+    }
+  },
+
+  // ── 웨이브 (몬스터 스폰 패턴) ──────────────────────
+  WAVES: [
+    { fromTime:0,   types:['slime_normal'],                             interval:2000, max:15  },
+    { fromTime:60,  types:['slime_normal','slime_speed'],               interval:1800, max:25  },
+    { fromTime:120, types:['slime_normal','slime_speed','slime_tanker'], interval:1600, max:35  },
+    { fromTime:180, types:['slime_normal','slime_speed','slime_tanker'], interval:1400, max:50  },
+    { fromTime:310, types:['slime_normal','slime_speed','slime_tanker'], interval:1200, max:65  },
+    { fromTime:480, types:['slime_normal','slime_speed','slime_tanker'], interval:1000, max:80  },
+    { fromTime:610, types:['slime_speed','slime_tanker'],               interval:800,  max:100 },
+    { fromTime:780, types:['slime_speed','slime_tanker'],               interval:650,  max:130 }
+  ]
+};
