@@ -113,7 +113,7 @@ class WaveSystem {
     const hpScale     = 1 + minute * (1.8 / 9);   // 매분 0.2배씩 → 9분에 정확히 2.8배
     const damageScale = 1 + minute * (0.8 / 9);   // 매분 약 0.0889배씩 → 9분에 정확히 1.8배
 
-    // 디버깅 로그 (필요 없으면 지워도 됩니다)
+    // 디버깅 로그 (필요 없으면 이 console.log 줄을 지워도 됩니다)
     console.log(`[HP_DEBUG] ${elapsed.toFixed(0)}초 | ${minute}분 | HP×${hpScale.toFixed(2)} | DMG×${damageScale.toFixed(2)}`);
 
     return {
