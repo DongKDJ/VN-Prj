@@ -170,7 +170,7 @@ class SkillManager {
     }
 
     // ── 충돌 (Guard Break) ─────────────────────────
-    if (this.activeSkills['guardBreak'] && this.player && this.player.body) {   // ← 안전 체크 2개 추가
+    if (this.activeSkills['guardBreak'] && this.player && this.player.body && this.player.active) {   // ← 안전 체크 강화
       const vel = this.player.body.velocity;
       if (Math.abs(vel.x) > 50 || Math.abs(vel.y) > 50) {
         const lv  = this.activeSkills['guardBreak'];
