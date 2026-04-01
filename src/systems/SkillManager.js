@@ -67,24 +67,26 @@ class SkillManager {
 
   // 스킬 선택지 반환 (레벨업 UI용)
   getChoices() {
-    const charType   = this.player.charType;
-    const allSkills  = Object.keys(CONFIG.SKILLS);
-    const available  = allSkills.filter(id => {
+    const charType  = this.player.charType;
+    const allSkills = Object.keys(CONFIG.SKILLS);
+    const available = allSkills.filter(id => {
       const sk = CONFIG.SKILLS[id];
       return sk.classes.includes(charType) && (this.activeSkills[id] || 0) < 5;
     });
 
-    // 가중치: 아직 없는 스킬 우선
-    const notOwned = available.filter(id => !this.activeSkills[id]);
-    const owned    = available.filter(id =>  this.activeSkills[id]);
+    const notOwned = Phaser.Utils.Array.Shuffle(available.filter(id => !this.activeSkills[id]));
+    const owned    = Phaser.Utils.Array.Shuffle(available.filter(id =>  this.activeSkills[id]));
 
+    // 보유 스킬이 있으면 반드시 1개 이상 포함
     let pool = [];
-    if (notOwned.length >= 3) {
-      pool = Phaser.Utils.Array.Shuffle(notOwned).slice(0, 3);
+    if (owned.length > 0 && notOwned.length >= 2) {
+      pool = [owned[0], notOwned[0], notOwned[1]];
+    } else if (owned.length > 0) {
+      pool = [...owned.slice(0, 2), ...notOwned.slice(0, 1)].slice(0, 3);
     } else {
-      pool = [...notOwned, ...Phaser.Utils.Array.Shuffle(owned)].slice(0, 3);
+      pool = notOwned.slice(0, 3);
     }
-    return pool;
+    return Phaser.Utils.Array.Shuffle(pool);
   }
 
   update(time, delta) {

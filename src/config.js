@@ -35,9 +35,9 @@ const CONFIG = {
 
   // ── 몬스터 ──────────────────────────────────────
   MONSTERS: {
-    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:80,  damage:5,  xp:5,  color:0x33cc33, size:24 },
-    slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:10, xp:15, color:0x3344cc, size:32 },
-    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:155, damage:8,  xp:8,  color:0xcc3333, size:18 }
+    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:80,  damage:5,  xp:2,  color:0x33cc33, size:24 },
+    slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:10, xp:12, color:0x3344cc, size:32 },
+    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:155, damage:8,  xp:5,  color:0xcc3333, size:18 }
   },
 
   // ── 보스 3마리 (3분/6분/9분) ──────────────────────
@@ -51,7 +51,7 @@ const CONFIG = {
   SKILLS: {
     spinBlade: {
       name: '회전 칼날', type: 'rotating',
-      classes: ['warrior','archer'],
+      classes: ['warrior'],
       desc: '주위를 회전하는 칼날',
       levels: [
         { blades:1, damage:15, rotSpeed:2.5, radius:65 },
@@ -161,13 +161,13 @@ const CONFIG = {
 
   // ── 웨이브 (9분 기준으로 조정) ──────────────────────
   WAVES: [
-    { fromTime:0,   types:['slime_normal'],                             interval:2000, max:15  },
-    { fromTime:45,  types:['slime_normal','slime_speed'],               interval:1800, max:25  },
-    { fromTime:90,  types:['slime_normal','slime_speed','slime_tanker'], interval:1600, max:35  },
-    { fromTime:150, types:['slime_normal','slime_speed','slime_tanker'], interval:1400, max:50  },
-    { fromTime:190, types:['slime_normal','slime_speed','slime_tanker'], interval:1200, max:65  },
-    { fromTime:280, types:['slime_normal','slime_speed','slime_tanker'], interval:1000, max:80  },
-    { fromTime:370, types:['slime_speed','slime_tanker'],               interval:800,  max:100 },
-    { fromTime:460, types:['slime_speed','slime_tanker'],               interval:650,  max:130 }
+    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:1200, max:30  },
+    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:1000, max:45  },
+    { fromTime:90,  types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:900,  max:60  },
+    { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:800,  max:80  },
+    { fromTime:190, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:700,  max:100 },
+    { fromTime:280, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:600,  max:120 },
+    { fromTime:370, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:500,  max:150 },
+    { fromTime:460, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:420,  max:180 }
   ]
 };
