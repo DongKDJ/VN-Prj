@@ -3,10 +3,10 @@
 // =====================================================
 
 const CONFIG = {
-  WIDTH: 960,
-  HEIGHT: 540,
-  GAME_DURATION: 900,      // 15분 (초)
-  BOSS_TIMES: [300, 600, 900], // 5분, 10분, 15분
+  WIDTH:  480,   // 세로 모바일 해상도
+  HEIGHT: 854,
+  GAME_DURATION: 540,           // 9분 (초)
+  BOSS_TIMES: [180, 360, 540],  // 3분, 6분, 9분
 
   // ── 플레이어 ──────────────────────────────────────
   PLAYER: {
@@ -40,12 +40,11 @@ const CONFIG = {
     slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:155, damage:8,  xp:8,  color:0xcc3333, size:18 }
   },
 
-  // ── 보스 (시간 순) ────────────────────────────────
+  // ── 보스 3마리 (3분/6분/9분) ──────────────────────
   BOSSES: [
-    { id:'angry_slime',    name:'분노의 슬라임', time:300, maxHp:800,  speed:105, damage:20, xp:200, color:0xff2222, size:60 },
-    { id:'sad_slime',      name:'우울의 슬라임', time:600, maxHp:1200, speed:60,  damage:15, xp:300, color:0x2266ff, size:72 },
-    { id:'fear_slime',     name:'공포의 슬라임', time:900, maxHp:1000, speed:120, damage:25, xp:400, color:0x222222, size:60 },
-    { id:'adhesion_slime', name:'집착의 슬라임', time:900, maxHp:700,  speed:90,  damage:18, xp:300, color:0xaa22cc, size:52 }
+    { id:'angry_slime', name:'분노의 슬라임', time:180, maxHp:700,  speed:105, damage:20, xp:200, color:0xff2222, size:60, bulletDmg:8  },
+    { id:'sad_slime',   name:'우울의 슬라임', time:360, maxHp:1100, speed:60,  damage:15, xp:300, color:0x2266ff, size:72, bulletDmg:10 },
+    { id:'fear_slime',  name:'공포의 슬라임', time:540, maxHp:900,  speed:120, damage:25, xp:400, color:0x444444, size:60, bulletDmg:14 }
   ],
 
   // ── 스킬 ──────────────────────────────────────────
@@ -55,11 +54,11 @@ const CONFIG = {
       classes: ['warrior','archer'],
       desc: '주위를 회전하는 칼날',
       levels: [
-        { blades:1, damage:15, rotSpeed:2.5, radius:65,  hitRate:800  },
-        { blades:2, damage:18, rotSpeed:3.0, radius:70,  hitRate:750  },
-        { blades:3, damage:21, rotSpeed:3.5, radius:75,  hitRate:700  },
-        { blades:4, damage:24, rotSpeed:4.0, radius:80,  hitRate:650  },
-        { blades:5, damage:27, rotSpeed:4.5, radius:85,  hitRate:600  }
+        { blades:1, damage:15, rotSpeed:2.5, radius:65 },
+        { blades:2, damage:18, rotSpeed:3.0, radius:70 },
+        { blades:3, damage:21, rotSpeed:3.5, radius:75 },
+        { blades:4, damage:24, rotSpeed:4.0, radius:80 },
+        { blades:5, damage:27, rotSpeed:4.5, radius:85 }
       ]
     },
     holyBarrier: {
@@ -160,15 +159,15 @@ const CONFIG = {
     }
   },
 
-  // ── 웨이브 (몬스터 스폰 패턴) ──────────────────────
+  // ── 웨이브 (9분 기준으로 조정) ──────────────────────
   WAVES: [
     { fromTime:0,   types:['slime_normal'],                             interval:2000, max:15  },
-    { fromTime:60,  types:['slime_normal','slime_speed'],               interval:1800, max:25  },
-    { fromTime:120, types:['slime_normal','slime_speed','slime_tanker'], interval:1600, max:35  },
-    { fromTime:180, types:['slime_normal','slime_speed','slime_tanker'], interval:1400, max:50  },
-    { fromTime:310, types:['slime_normal','slime_speed','slime_tanker'], interval:1200, max:65  },
-    { fromTime:480, types:['slime_normal','slime_speed','slime_tanker'], interval:1000, max:80  },
-    { fromTime:610, types:['slime_speed','slime_tanker'],               interval:800,  max:100 },
-    { fromTime:780, types:['slime_speed','slime_tanker'],               interval:650,  max:130 }
+    { fromTime:45,  types:['slime_normal','slime_speed'],               interval:1800, max:25  },
+    { fromTime:90,  types:['slime_normal','slime_speed','slime_tanker'], interval:1600, max:35  },
+    { fromTime:150, types:['slime_normal','slime_speed','slime_tanker'], interval:1400, max:50  },
+    { fromTime:190, types:['slime_normal','slime_speed','slime_tanker'], interval:1200, max:65  },
+    { fromTime:280, types:['slime_normal','slime_speed','slime_tanker'], interval:1000, max:80  },
+    { fromTime:370, types:['slime_speed','slime_tanker'],               interval:800,  max:100 },
+    { fromTime:460, types:['slime_speed','slime_tanker'],               interval:650,  max:130 }
   ]
 };

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs wc:*)",
+      "Bash(find 'C:/Users/sos79/OneDrive/Desktop/Web/VN Prj/src' -name *.js -exec wc -l {} +)"
+    ]
+  }
+}

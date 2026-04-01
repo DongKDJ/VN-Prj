@@ -18,7 +18,7 @@ class LobbyScene extends Phaser.Scene {
 
     // ── 타이틀 ────────────────────────────────────
     this.add.text(W/2, H * 0.22, '슬라임 슬레이어', {
-      fontSize: '56px',
+      fontSize: '44px',
       fontFamily: '"Malgun Gothic", "맑은 고딕", sans-serif',
       fill: '#88ff66',
       stroke: '#003300',
@@ -77,12 +77,13 @@ class LobbyScene extends Phaser.Scene {
   }
 
   _addDecoSlimes() {
+    // 480×854 세로 해상도에 맞게 배치
     const positions = [
-      [80, 80, 'slime_normal', 1.5],
-      [880, 100, 'slime_tanker', 1.8],
-      [120, 440, 'slime_speed', 1.2],
-      [840, 430, 'slime_normal', 1.3],
-      [480, 490, 'slime_tanker', 1.0]
+      [60,  120, 'slime_normal', 1.4],
+      [420, 140, 'slime_tanker', 1.7],
+      [80,  680, 'slime_speed',  1.2],
+      [400, 700, 'slime_normal', 1.3],
+      [240, 760, 'slime_tanker', 1.0]
     ];
     positions.forEach(([x, y, key, scale]) => {
       const s = this.add.image(x, y, key).setScale(scale).setAlpha(0.4).setDepth(1);
