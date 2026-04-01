@@ -31,7 +31,7 @@ const CONFIG = {
   },
 
   // ── 경험치 테이블 (레벨당 필요 XP) ──────────────────
-  XP_TABLE: [0,10,25,45,80,100,140,185,240,300,350,400,460,550,640,720,810,900,990,1100,1240],
+  XP_TABLE: [0,14,28,47,83,100,140,185,240,300,350,400,460,550,640,720,810,900,990,1100,1240],
 
   // ── 몬스터 ──────────────────────────────────────
   MONSTERS: {
@@ -42,9 +42,9 @@ const CONFIG = {
 
   // ── 보스 3마리 (3분/6분/9분) ──────────────────────
   BOSSES: [
-    { id:'angry_slime', name:'분노의 슬라임', time:180, maxHp:700,  speed:105, damage:20, xp:200, color:0xff2222, size:60, bulletDmg:8  },
-    { id:'sad_slime',   name:'우울의 슬라임', time:360, maxHp:1100, speed:60,  damage:15, xp:300, color:0x2266ff, size:72, bulletDmg:10 },
-    { id:'fear_slime',  name:'공포의 슬라임', time:540, maxHp:900,  speed:120, damage:25, xp:400, color:0x444444, size:60, bulletDmg:14 }
+    { id:'angry_slime', name:'분노의 슬라임', time:180, maxHp:700,  speed:105, damage:23, xp:200, color:0xff2222, size:60, bulletDmg:8  },
+    { id:'sad_slime',   name:'우울의 슬라임', time:360, maxHp:1100, speed:60,  damage:19, xp:300, color:0x2266ff, size:72, bulletDmg:10 },
+    { id:'fear_slime',  name:'공포의 슬라임', time:540, maxHp:900,  speed:120, damage:35, xp:400, color:0x444444, size:60, bulletDmg:14 }
   ],
 
   // ── 스킬 ──────────────────────────────────────────
