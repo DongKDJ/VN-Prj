@@ -169,8 +169,8 @@ class SkillManager {
       }
     }
 
-    // ── 충돌 (Guard Break) ─────────────────────────
-    if (this.activeSkills['guardBreak']) {
+        // ── 충돌 (Guard Break) ─────────────────────────
+    if (this.activeSkills['guardBreak'] && this.player.body) {   // ← 여기 안전 체크 추가!
       const vel = this.player.body.velocity;
       if (Math.abs(vel.x) > 50 || Math.abs(vel.y) > 50) {
         const lv  = this.activeSkills['guardBreak'];
