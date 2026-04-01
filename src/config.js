@@ -37,7 +37,7 @@ const CONFIG = {
   MONSTERS: {
     slime_normal: { name:'일반 슬라임', maxHp:30,  speed:80,  damage:5,  xp:2,  color:0x33cc33, size:24 },
     slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:10, xp:12, color:0x3344cc, size:32 },
-    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:155, damage:8,  xp:5,  color:0xcc3333, size:18 }
+    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:145, damage:8,  xp:5,  color:0xcc3333, size:18 }
   },
 
   // ── 보스 3마리 (3분/6분/9분) ──────────────────────
@@ -102,11 +102,11 @@ const CONFIG = {
       classes: ['warrior','archer'],
       desc: '무작위 위치에 화살비',
       levels: [
-        { arrows:5,  damage:8,  cooldown:4000, radius:80  },
-        { arrows:8,  damage:10, cooldown:3500, radius:90  },
-        { arrows:11, damage:12, cooldown:3000, radius:100 },
-        { arrows:14, damage:14, cooldown:2500, radius:110 },
-        { arrows:17, damage:16, cooldown:2000, radius:120 }
+        { arrows:5,  damage:15,  cooldown:4000, radius:80  },
+        { arrows:8,  damage:35, cooldown:3500, radius:90  },
+        { arrows:11, damage:68, cooldown:3000, radius:100 },
+        { arrows:14, damage:96, cooldown:2500, radius:110 },
+        { arrows:17, damage:120, cooldown:1800, radius:120 }
       ]
     },
     guardBreak: {
