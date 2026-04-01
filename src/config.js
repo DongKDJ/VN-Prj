@@ -35,9 +35,9 @@ const CONFIG = {
 
   // ── 몬스터 ──────────────────────────────────────
   MONSTERS: {
-    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:80,  damage:5,  xp:2,  color:0x33cc33, size:24 },
+    slime_normal: { name:'일반 슬라임', maxHp:30,  speed:83,  damage:5,  xp:2,  color:0x33cc33, size:24 },
     slime_tanker: { name:'탱커 슬라임', maxHp:120, speed:50,  damage:10, xp:12, color:0x3344cc, size:32 },
-    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:145, damage:8,  xp:5,  color:0xcc3333, size:18 }
+    slime_speed:  { name:'빠른 슬라임', maxHp:20,  speed:140, damage:8,  xp:5,  color:0xcc3333, size:18 }
   },
 
   // ── 보스 3마리 (3분/6분/9분) ──────────────────────
@@ -161,13 +161,13 @@ const CONFIG = {
 
   // ── 웨이브 (9분 기준으로 조정) ──────────────────────
   WAVES: [
-    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:850, max:40  },
-    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:520, max:65  },
+    { fromTime:0,   types:['slime_normal','slime_normal','slime_normal'],                                                    interval:900, max:33  },
+    { fromTime:45,  types:['slime_normal','slime_normal','slime_normal','slime_speed'],                                      interval:520, max:55  },
     { fromTime:90,  types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:460,  max:80  },
-    { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:360,  max:95  },
-    { fromTime:190, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:320,  max:115 },
-    { fromTime:280, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:280,  max:135 },
-    { fromTime:370, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:240,  max:160 },
+    { fromTime:150, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_tanker'],                       interval:360,  max:100  },
+    { fromTime:190, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:320,  max:120 },
+    { fromTime:280, types:['slime_normal','slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker'],         interval:280,  max:145 },
+    { fromTime:370, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:240,  max:170 },
     { fromTime:460, types:['slime_normal','slime_normal','slime_speed','slime_speed','slime_tanker','slime_tanker'],         interval:180,  max:220 }
   ]
 };
