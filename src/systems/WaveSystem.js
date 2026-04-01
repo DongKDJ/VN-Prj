@@ -42,7 +42,12 @@ class WaveSystem {
 
     const type = Phaser.Utils.Array.GetRandom(wave.types);
     const pos  = this._offscreenPos();
-    const m    = new Monster(this.scene, pos.x, pos.y, type);
+    const base  = CONFIG.MONSTERS[type];
+    const scale = this._getStatScale(elapsed);
+    const m = new Monster(this.scene, pos.x, pos.y, type, {
+      maxHp: Math.floor(base.maxHp * scale.hp),
+      damage: Math.floor(base.damage * scale.damage)
+    });
     monsters.add(m, true);
   }
 
@@ -100,6 +105,14 @@ class WaveSystem {
     }
     return { x, y };
   }
+
+  // 갈수록 몬스터 체력, 공격력 증가
+  _getStatScale(elapsed) {
+  return {
+    hp: 1 + elapsed * 0.002,       // 체력 증가
+    damage: 1 + elapsed * 0.0015   // 공격력 증가
+  };
+}
 
   // 너무 멀리 떨어진 몬스터 제거 (메모리 관리)
   cullDistant(px, py) {
