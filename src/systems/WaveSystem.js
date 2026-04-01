@@ -106,14 +106,14 @@ class WaveSystem {
     return { x, y };
   }
 
-  // 갈수록 몬스터 체력, 공격력 증가
+  // 갈수록 몬스터 체력, 공격력 증가 (9분 기준 HP 2.8배, 공격력 1.8배)
   _getStatScale(elapsed) {
-    const baseTime = 540;                    // 9분(540초)을 기준 시간으로 설정
-    const timeFactor = elapsed / baseTime;   // 0초 = 0.0, 9분 = 1.0, 18분 = 2.0 ...
+    const targetTime = 540;                    // 9분 = 540초
+    const ratio      = Math.min(elapsed / targetTime, 1);   // 540초 이후에는 1.0으로 고정
 
     return {
-      hp:     1 + timeFactor * 4.5,          // 9분에 약 5.5배, 18분에 약 10배
-      damage: 1 + timeFactor * 3.0           // 9분에 약 4배, 18분에 약 7배
+      hp:     1 + ratio * 1.8,      // 0초 → 1배, 540초 → 정확히 2.8배
+      damage: 1 + ratio * 0.8       // 0초 → 1배, 540초 → 정확히 1.8배
     };
   }
 
